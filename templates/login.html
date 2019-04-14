@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <!--[if lt IE 9]>
+    <script src="{{ url_for('static', filename='js/html5shiv.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
+    <![endif]-->
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script>
+        {#var this_code = document.getElementById("discode").value;#}
+        {#alert(this_code);#}
+        {#$.ajax({#}
+        {#    url: "{{ url_for('login') }}",#}
+        {#    type: "POST",#}
+        {#    data: JSON.stringify({this_code}),#}
+        {#    contentType: "application/json",#}
+        {#    dataType: "json",#}
+        {#    success: function (data) {#}
+        {#        alert(data);#}
+        {#    }#}
+        //});
+
+    </script>
+</head>
+
+<body onLoad="createCode()">
+<div class="login-body">
+    <div class="title-login">
+        登录
+    </div>
+    <div class="reg-form">
+        没有账号?
+        <br>
+        <a href="{{ url_for('register') }}">立即注册<span class="glyphicon glyphicon-share-alt"></span></a>
+        <div class="go_index">
+            <a href="{{ url_for('index') }}">返回首页<span class="glyphicon glyphicon-home"></span></a>
+        </div>
+    </div>
+    <form action="{{ url_for('login') }}" method="post">
+        <div class="login-form">
+            <input type="hidden" name="page_code" id="page_code" value="">
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-xingmingyonghumingnicheng"></span>
+                </div>
+                <div class="item-input">
+                    <input type="text" class="form-control" id="studentid" placeholder="请输入学号" maxlength="8"
+                           onBlur="studentid_panduan()" name="student_id">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="studentid_tip"> 学号不能为空</div>
+            </div>
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-mima"></span>
+                </div>
+                <div class="item-input">
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码"
+                           onBlur="password_panduan()" name="password">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="password_tip">请输入密码</div>
+            </div>
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-yanzhengma"></span>
+                </div>
+                <div class="item-input">
+                    <div class="yanzheng" onselectstart="return false">
+                        <span id="discode" onClick="Codechange()"></span>
+                    </div>
+                    <input type="text" class="form-control" id="yanzhengma" style="width:50%" placeholder="四位验证码"
+                           onBlur="yanzhengma_panduan()" maxlength="4" name="code">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="yanzhengma_tip">请输入验证码</div>
+            </div>
+            <div class="form-item">
+                <button class="btn btn-success" type="submit">登录</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

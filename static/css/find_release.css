@@ -1,0 +1,112 @@
+@charset "utf-8";
+#describe_input
+{	width:70%;
+height:100px;}
+        body {
+            padding-top: 50px;
+            padding-bottom: 40px;
+            color: #5a5a5a;
+        }
+		.register{
+			float:right;
+			font-size:16px;
+			padding-top:14px;
+			}
+
+	.question_body{
+		
+		height:1300px;
+		background-color:#ECECEC;
+
+}
+	.new_question
+	{
+		height:1200px;
+		width:75%;
+		background:url(../images/lostandfind.png);
+		background-size:100%;
+		margin-left:12.5%;
+		padding-left:3%;
+		padding-right:3%;
+		border-radius: 15px;
+	}
+	.row
+	{	margin-left:8px;
+		height:50px;}
+	.column{
+		font-size:18px;
+		color:#000;
+		margin-top:15px;}
+	.main_input_box{
+		margin-top:20px;
+	}
+	.title
+	{
+		
+		}
+	label
+	{	font-size:20px;
+		color:#F00;}
+	.error-tip
+	{
+		font-size:15px;
+		color:#F00;
+		text-indent:1em;
+		visibility:hidden;
+	}
+
+	.form-control
+	{
+		width:70%;}
+	.describe
+	{}
+	.file_btn
+{
+	    width: 100px;
+    height: 35px;
+    line-height: 40px;
+    text-align: center;
+    background: #d8b49c;
+    display: block;
+    font-size: 16px;
+    border-radius: 45px;
+	position:relative;
+}
+	#xdaTanFileImg
+	{
+    display: block;
+    width: 63%;
+    height: 35px;
+	filter: alpha(opacity=45); 
+	opacity:0; 
+	}
+	.box_file
+	{ 
+		filter: alpha(opacity=45); 																	        opacity:0.45; 
+		position:absolute; 
+		left:0; 
+		top:0;
+	}
+	.picture_show
+	{
+		margin-top:10px;
+		width:500px;
+		height:300px;
+   
+	}
+	#avarimgs
+	{	width:500px;
+		height:300px;
+		border:1px solid;
+		}
+	.submit_box
+	{
+		margin-top:20px;
+		}
+	.btn-success
+	{	border-radius: 5px;
+		width:140px;
+	}
+	.submit_box
+	{	 text-align:center;}/* CSS Document */
+

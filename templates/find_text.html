@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}失物招领-正文-标题{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/find_text.css') }}">
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">主页</a></li>
+        <li><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li><a href="{{ url_for('data') }}">约吧</a></li>
+        <li class="active"><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="question_body">
+        <div class="new_question">
+            <div class="row">
+                <div class="column">
+                    <a class="section" href="{{ url_for('loststandfind') }}">失物招领</a>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    正文
+                </div>
+            </div>
+            <div class="main_input_box">
+                <div class="input">
+                    <div class="title">
+                        <div class="information title">
+                            <p>{{ question_content.title }}</p>
+                        </div>
+                    </div>
+                    <div class="user_information">
+                        <p class="bg-primary">
+                    		<span class="author">
+                            {{ question_content.author.username }}
+                            </span>
+                            发布于
+                            <span class="time">
+                            {{ question_content.create_time }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="find_time_box">
+                        <label>拾获时间</label>
+                        <span class="iconfont icon-shijian1"></span>
+                        <div class="information find_time">
+                            <p class="bg-success">
+                                {{ question_content.time }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="find_place">
+                        <label>拾获地点</label>
+                        <span class="iconfont icon-coordinates"></span>
+                        <div class="information find_place">
+                            <p class="bg-info">
+                                {{ question_content.location }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <label>联系方式</label>
+                        <span class="iconfont icon-lianxifangshi"></span>
+                        <div class="information contact">
+                            <p class="bg-warning">
+                                {{ question_content.contact }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="describe">
+                        <label>详情描述</label>
+                        <span class="iconfont icon-neirong2"></span>
+                        <div class="information describe">
+                            <p class="bg-danger">
+                                {{ question_content.detail }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="picture">
+                        <label>图片</label>
+                        <span class="iconfont icon-tupian"></span>
+                        <div class="picture_show">
+                            {% if question_content.picture %}
+                                <img src="{{ url_for('static', filename='pictures/'+question_content.picture) }}"
+                                     id="avarimgs">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/ex2.png') }}" id="avarimgs">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <label>
+                            评论
+                        </label>
+                        <span class="iconfont icon-pinglun"></span>
+                        <div class="answer_list">
+                            {% for a in question_content.lost_answers %}
+                                <div class="answer-content-warp">
+                                    <div class="content">
+                                	<span class="author">
+                                    {{ a.author.username }}
+                                    </span>
+                                        <span class="data">
+                                        	{{ a.create_time }}
+                                    </span>
+                                        <div class="content-text">
+                                            <p>
+                                                {{ a.content }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="discuss">
+                                <form action="{{ url_for('find_answer') }}" method="post">
+                                    <label>
+                                        我来评论
+                                    </label>
+                                    <span class="iconfont icon-yijianfankui"></span>
+                                    <div class="describe_input">
+                    				<textarea id="describe_input" name="content">
+                    				</textarea>
+                                    </div>
+                                    <input type="hidden" name="question_id" value="{{ question_content.id }}">
+                                    <button class="btn bg-primary" type="submit">提交</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+

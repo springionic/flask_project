@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}我要发布-拼车{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carpool_release.css') }}">
+    <script src="{{ url_for('static', filename='js/carpool_release.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">主页</a></li>
+        <li class="active"><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li><a href="{{ url_for('data') }}">约吧</a></li>
+        <li><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="question_body">
+        <div class="new_question">
+            <div class="row">
+                <div class="column">
+                    <a class="section" href="{{ url_for('carpool') }}">打车拼车</a>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    我要发布
+                </div>
+            </div>
+            <div class="main_input_box">
+                <form class="input" method="post" action="{{ url_for('carpool_release') }}">
+                    <div class="title">
+                        <span class="iconfont icon-biaoti"></span>
+                        <label>
+                            信息标题*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" placeholder="请输入信息标题" id="title_input"
+                                   onBlur="title_check()" name="title"/>
+                        </div>
+                        <div class="error-tip" id="title_tip">请输入信息标题!
+                        </div>
+
+                    </div>
+                    <div class="depart_time">
+                        <span class="iconfont icon-shijian"></span>
+                        <label>
+                            出发时间*
+                        </label>
+
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="depart_time_input" onBlur="depart_time_check()"
+                                   placeholder="请输入出发时间" name="time"/>
+                        </div>
+                        <div class="error-tip" id="depart_time_tip">请输入出发时间!
+                        </div>
+
+                    </div>
+                    <div class="depart_place">
+                        <span class="iconfont icon-dangdi"></span>
+                        <label>
+                            目的地*
+                        </label>
+
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="depart_place_input"
+                                   onBlur="depart_place_check()"
+                                   placeholder="请输入目的地" name="destination"/>
+                        </div>
+                        <div class="error-tip" id="depart_place_tip">请输入目的地!
+                        </div>
+
+                    </div>
+                    <div class="people">
+                        <span class="iconfont icon-renshu"></span>
+                        <label>
+                            拼车人数*
+                        </label>
+
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="people_input" onBlur="people_check()"
+                                   placeholder="请输入拼车人数" maxlength="2" name="num"/>
+                        </div>
+                        <div class="error-tip" id="people_tip">请输入拼车人数!
+                        </div>
+
+                    </div>
+                    <div class="contact">
+                        <span class="iconfont icon-lianxifangshi"></span>
+                        <label>
+                            联系方式*
+                        </label>
+
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="contact_input" onBlur="contact_check()"
+                                   placeholder="请输入联系方式(备注QQ或微信或手机号)" name="contact"/>
+                        </div>
+                        <div class="error-tip" id="contact_tip">请入联系方式!
+                        </div>
+
+                    </div>
+                    <div class="describe">
+                        <span class="iconfont icon-yijianfankui"></span>
+                        <label>
+                            详情描述*
+                        </label>
+
+                        <div class="describe_input">
+                            <textarea id="describe_input" onBlur="describe_check()" name="detail"></textarea>
+                            <div class="error-tip" id="describe_tip">请输入详情描述!
+                            </div>
+                        </div>
+                        <div class="submit_box">
+                            <button class="btn btn-success" type="submit">我要发布</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+

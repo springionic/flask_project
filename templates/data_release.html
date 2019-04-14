@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}我要发布-约吧{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/data_release.css') }}">
+    <script src="{{ url_for('static', filename='js/data_release.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">主页</a></li>
+        <li><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li class="active"><a href="{{ url_for('data') }}">约吧</a></li>
+        <li><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="question_body">
+        <div class="new_question">
+            <div class="row">
+                <div class="column">
+                    <a class="section" href="{{ url_for('data') }}">约吧</a>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    我要发布
+                </div>
+            </div>
+            <div class="main_input_box">
+                <form class="input" action="{{ url_for('data_release') }}" method="post">
+                    <div class="title">
+                        <span class="iconfont icon-huodongzhuti"></span>
+                        <label>
+                            活动主题*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="title_input" placeholder="请输入信息标题"
+                                   onBlur="title_check()" name="title"/>
+                        </div>
+                        <div class="error-tip" id="title_tip">请输入活动主题<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="activity_time">
+                        <span class="iconfont icon-shijian1"></span>
+                        <label>
+                            活动时间*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="activity_time_input" placeholder="请输入活动时间"
+                                   onBlur="activity_time_check()" name="time"/>
+                        </div>
+                        <div class="error-tip" id="activity_time_tip">请输入活动时间<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="activity_place">
+                        <span class="iconfont icon-huodongdidian"></span>
+                        <label>
+                            活动地点*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="activity_place_input" placeholder="请输入活动地点"
+                                   onBlur="activity_place_check()" name="location"/>
+                        </div>
+                        <div class="error-tip" id="activity_place_tip">请输入活动地点<span class="iconfont icon-cry"></span>
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <span class="iconfont icon-lianxifangshi"></span>
+                        <label>
+                            联系方式*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="contact_input"
+                                   placeholder="请输入联系方式(备注QQ或微信或手机号)" onBlur="contact_check()" name="contact"/>
+                        </div>
+                        <div class="error-tip" id="contact_tip">请入联系方式<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="describe">
+                        <span class="iconfont icon-huodongxiangqing"></span>
+                        <label>
+                            活动详情*
+                        </label>
+                        <div class="describe_input">
+                            <textarea id="describe_input" onBlur="describe_check()" name="detail"></textarea>
+                            <div class="error-tip" id="describe_tip">请输入活动详情<span class="iconfont icon-cry"></span>
+                            </div>
+                        </div>
+                        <div class="submit_box">
+                            <button class="btn btn-success" type="submit">我要发布</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %}我的信息{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_information.css') }}">
+    <script src="{{ url_for('static', filename='js/personal_information.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">主页</a></li>
+        <li><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li><a href="{{ url_for('data') }}">约吧</a></li>
+        <li><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="person_info_wrap">
+        <div class="wrap">
+            <div class="photo photo_center photo_front" id="wrapp">
+                <div class="photo-wrap">
+                    <div class="photo photo_front">
+                        <div class="side side-front">
+                            <div class="head">
+                                <p>个人信息</p>
+                            </div>
+                            <div class="info">
+                                <div class="username_box">
+                                    <div class="information username">
+                                        <span class="iconfont icon-xingmingyonghumingnicheng">昵称:</span>
+                                        <p class="bg-success">
+                                            {{ user.username }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="studentid">
+                                    <div class="information studentid">
+                                        <span class="iconfont icon-wxbzhanghu">学号:</span>
+                                        <p class="bg-info">
+                                            {{ user.s_id }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="botton_box">
+                                <button type="submit" class="btn btn-primary" onClick="turn()">查看发布记录</button>
+                            </div>
+                        </div>
+                        <div class="side side-back">
+                            <div class="head">
+                                <p>发布记录</p>
+                            </div>
+                            <div class="question_list">
+                                <h3 style="color: red"><strong>拼车发布记录</strong></h3>
+                                {% for q in user.carpool_questions %}
+                                    <article class="question_wrapper top">
+                                        <section class="box">
+                                            <div class="question_detail">
+                                                <header class="title">
+                                                    <a href="{{ url_for('carpool_text', question_id=q.id) }}">
+                                                        <h3>{{ q.title }}</h3>
+                                                    </a>
+                                                </header>
+                                                <p>{{ q.detail }}</p>
+                                                <span class="time">{{ q.create_time }}</span>
+                                            </div>
+                                        </section>
+                                    </article>
+                                {% endfor %}
+                                <h3 style="color: red"><strong>约吧发布记录</strong></h3>
+                                {% for q in user.play_questions %}
+                                    <article class="question_wrapper top">
+                                        <section class="box">
+                                            <div class="question_detail">
+                                                <header class="title">
+                                                    <a href="{{ url_for('data_text', question_id=q.id) }}">
+                                                        <h3>{{ q.title }}</h3>
+                                                    </a>
+                                                </header>
+                                                <p>{{ q.detail }}</p>
+                                                <span class="time">{{ q.create_time }}</span>
+                                            </div>
+                                        </section>
+                                    </article>
+                                {% endfor %}
+                                <h3 style="color: red"><strong>寻物启事记录</strong></h3>
+                                {% for q in user.search_questions %}
+                                    <article class="question_wrapper top">
+                                        <section class="box">
+                                            <div class="question_detail">
+                                                <header class="title">
+                                                    <a href="{{ url_for('lost_text', question_id=q.id) }}">
+                                                        <h3>{{ q.title }}</h3>
+                                                    </a>
+                                                </header>
+                                                <p>{{ q.detail }}</p>
+                                                <span class="time">{{ q.create_time }}</span>
+                                            </div>
+                                        </section>
+                                    </article>
+                                {% endfor %}
+                                <h3 style="color: red"><strong>失物招领记录</strong></h3>
+                                {% for q in user.lost_questions %}
+                                    <article class="question_wrapper top">
+                                        <section class="box">
+                                            <div class="question_detail">
+                                                <header class="title">
+                                                    <a href="{{ url_for('find_text', question_id=q.id) }}">
+                                                        <h3>{{ q.title }}</h3>
+                                                    </a>
+                                                </header>
+                                                <p>{{ q.detail }}</p>
+                                                <span class="time">{{ q.create_time }}</span>
+                                            </div>
+                                        </section>
+                                    </article>
+                                {% endfor %}
+                                <div class="botton_box">
+                                    <button type="submit" class="btn btn-primary" onClick="turn()">查看个人信息</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin-left:30%;
+	background-color:#E4E4E4;;
+	background-repeat:no-repeat ;
+	background-size:100% 100%;
+	background-attachment: fixed;
+	min-width:1000px;
+	}
+.title-login{
+	margin-bottom:30px;
+	background-color:#FFF;
+	font-size:30px;
+	text-align:center;}
+.login-body{
+	margin-top:100px;
+	margin-bottom:100px;
+	padding-top:2%;
+	padding-left:5%;
+	width:60%;
+	height:450px;
+	border-radius: 25px;
+	padding-right:3%;
+	background-color:#FFF;
+	}
+.login-form{
+	width:60%;
+	}
+.reg-form{
+	width:30%;
+	float:right;
+	text-align:center;
+	height:270px;
+	border-left:1px  dashed #EAEAEA;
+	font-size:20px;
+	}
+.go_index{
+	margin-top:180px;	
+	}
+.form-item{
+	padding-bottom:3px;
+	}
+.error-tip{
+	color:#F00;
+	text-indent:3em;
+	}
+.discode{
+	margin-top:20px;
+	}
+.yanzheng{
+	width:35%;
+	height:50px; 
+	background:#FFF; 
+	float:right;
+	font-size:25px;
+	text-align:center;
+}
+.form-control{
+	background-color:#EAEAEA;
+	height:50px;
+	font-size:18px;
+	border-radius: 10px;
+	width:80%;
+		}
+.icon_box
+{ float:left;
+	margin-right:10px;}
+.iconfont
+{font-size:30px;}
+.btn
+{width:80%; height:50px;
+margin-left:40px;}
+

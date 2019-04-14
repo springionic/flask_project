@@ -1,0 +1,67 @@
+@charset "utf-8";
+body{
+	margin-left:30%;
+	background-color:#E4E4E4;
+	background-repeat:no-repeat ;
+	background-size:100% 100%;
+	background-attachment: fixed;
+	min-width:800px;
+	}
+
+.reg-body{
+	margin-top:100px;
+	margin-bottom:100px;
+	padding-top:5%;
+	padding-left:5%;
+	width:70%;
+	height:550px;
+	background-color:#FFF;
+	border-radius: 25px;
+	padding-right:3%;
+	}
+.reg-form{
+	width:70%;
+	}
+.login-form{
+	width:30%;
+	float:right;
+	text-align:center;
+	height:425px;
+	border-left:1px  dashed #EAEAEA;
+	font-size:20px;
+	}
+.go_index{
+	margin-top:320px;
+	
+	}
+.form-item{
+	padding-bottom:5px;
+	}
+.error-tip{
+	color:#F00;
+	text-indent:3em;
+	}
+.yanzheng{
+	width:40%;
+	height:50px; 
+	background:#FFF; 
+	float:right;
+	font-size:25px;
+	text-align:center;
+}
+.form-control{
+	background-color:#EAEAEA;
+	height:50px;
+	font-size:18px;
+	border-radius: 10px;
+	width:70%;
+		}
+.icon_box
+{ float:left;
+margin-right:15px;}
+.iconfont
+{font-size:30px;}
+.btn
+{width:70%; height:50px;
+margin-left:40px;}/* CSS Document */
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/iconfont.css') }}">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <!--[if lt IE 9]>
+    <script src="{{ url_for('static', filename='js/html5shiv.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
+    <![endif]-->
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+</head>
+
+<body onLoad="createCode()">
+<div class="reg-body">
+    <div class="login-form">
+        已经注册过?
+        <br>
+        <a href="{{ url_for('login') }}">直接登录<span class="glyphicon glyphicon-share-alt"></span></a>
+        <div class="go_index">
+            <a href="{{ url_for('index') }}">返回首页<span class="glyphicon glyphicon-home"></span></a>
+        </div>
+    </div>
+    <form method="post" action="{{ url_for('register') }}">
+        <div class="reg-form">
+            <input type="hidden" name="page_code" id="page_code" value="">
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-wxbzhanghu"></span>
+                </div>
+                <div class="item-input">
+                    <input type="text" class="form-control" id="studentid" placeholder="请输入学号" maxlength="8"
+                           onBlur="studentid_panduan()" name="student_id">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="studentid_tip"> 学号不能为空</div>
+
+            </div>
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-xingmingyonghumingnicheng"></span>
+                </div>
+                <div class="item-input">
+                    <input type="text" class="form-control" id="username" placeholder="请输入昵称,2-8个文字或字符" maxlength="10"
+                           onBlur="username_panduan()" name="username">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="username_tip"> 昵称不能为空</div>
+            </div>
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-mima"></span>
+                </div>
+                <div class="item-input">
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码,字母和数字结合,至少8位"
+                           onBlur="password_panduan()" name="password">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="password_tip">请输入密码</div>
+            </div>
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-mima1"></span>
+                </div>
+                <div class="item-input">
+                    <input type="password" class="form-control" id="repassword" placeholder="请再次输入密码"
+                           onBlur="password_repanduan()">
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="repassword_tip"> 两次密码不一样</div>
+            </div>
+            <div class="form-item">
+                <div class="icon_box">
+                    <span class="iconfont icon-yanzhengma"></span>
+                </div>
+                <div class="item-input">
+                    <input type="text" class="form-control" id="yanzhengma" style="width:50%; float:left;"
+                           placeholder="四位验证码" onBlur="yanzhengma_panduan()" maxlength="4" name="code">
+                </div>
+                <div class="yanzheng" onselectstart="return false">
+                    <span id="discode" onClick="Codechange()"></span>
+                </div>
+                <div class="error-tip" style="visibility:hidden" id="yanzhengma_tip">请输入验证码</div>
+
+            </div>
+            <div class="form-item submit_box">
+                <button class="btn btn-success">注册</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

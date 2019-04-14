@@ -1,0 +1,72 @@
+@charset "utf-8";
+#describe_input
+{	width:70%;
+height:100px;}
+        body {
+            padding-top: 50px;
+            padding-bottom: 40px;
+            color: #5a5a5a;
+        }
+		.register{
+			float:right;
+			font-size:16px;
+			padding-top:14px;
+			}
+	.question_body{
+		
+		height:1300px;
+		background-color:#ECECEC;
+
+}
+	.new_question
+	{
+		height:1200px;
+		width:75%;
+		background:url(../images/lostandfind.png);
+		background-size:100%;
+		margin-left:12.5%;
+		padding-left:3%;
+		padding-right:3%;
+		border-radius: 15px;
+	}
+	.row
+	{	margin-left:8px;
+		height:50px;}
+	.column{
+		font-size:18px;
+		color:#000;
+		margin-top:15px;}
+	.main_input_box{
+		margin-top:20px;
+	}
+	.title
+	{ 
+		}
+	label
+	{	font-size:20px;
+	 	color:#5AF;}
+	.error-tip
+	{
+		font-size:15px;
+		color:#F00;
+		text-indent:1em;
+		visibility:hidden;
+	}
+
+	.form-control
+	{
+		width:70%;}
+	.describe
+	{}
+
+	.submit_box
+	{
+		margin-top:20px;
+		}
+	.btn-success
+	{	border-radius: 5px;
+		width:140px;
+	}
+	.submit_box
+	{	 text-align:center;}/* CSS Document */
+

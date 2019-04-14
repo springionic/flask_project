@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}我要发布-失物招领{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/find_release.css') }}">
+    <script src="{{ url_for('static', filename='js/find_release.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">主页</a></li>
+        <li><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li><a href="{{ url_for('data') }}">约吧</a></li>
+        <li class="active"><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="question_body">
+        <div class="new_question">
+            <div class="row">
+                <div class="column">
+                    <a class="section" href="{{ url_for('loststandfind') }}">失物招领</a>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    我要发布
+                </div>
+            </div>
+            <div class="main_input_box">
+                <form class="input" action="{{ url_for('find_release') }}" method="post" enctype="multipart/form-data">
+                    <div class="title">
+                        <span class="iconfont icon-biaoti"></span>
+                        <label>
+                            信息标题*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" id="title_input" placeholder="请输入信息标题"
+                                   onBlur="title_check()" name="title"/>
+                        </div>
+                        <div class="error-tip" id="title_tip">请输入信息标题<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="find_time">
+                        <span class="iconfont icon-shijian"></span>
+                        <label>
+                            拾获时间*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" placeholder="请输入拾取时间" id="find_time_input"
+                                   onBlur="find_time_check()" name="time"/>
+                        </div>
+                        <div class="error-tip" id="find_time_tip">请输入拾获时间<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="find_place">
+                        <span class="iconfont icon-dangdi"></span>
+                        <label>
+                            拾获地点*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" placeholder="请输入拾取地点" id="find_place_input"
+                                   onBlur="find_place_check()" name="location"/>
+                        </div>
+                        <div class="error-tip" id="find_place_tip">请输入拾获地点<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="contact">
+                        <span class="iconfont icon-lianxifangshi"></span>
+                        <label>
+                            联系方式*
+                        </label>
+                        <div class="ui input focus">
+                            <input type="text" class="form-control" placeholder="请输入联系方式(备注QQ或微信或手机号)"
+                                   id="contact_input" onBlur="contact_check()" name="contact"/>
+                        </div>
+                        <div class="error-tip" id="contact_tip">请输入联系方式<span class="iconfont icon-cry"></span>
+                        </div>
+
+                    </div>
+                    <div class="describe">
+                        <span class="iconfont icon-yijianfankui"></span>
+                        <label>
+                            详情描述*
+                        </label>
+                        <div class="describe_input">
+                            <textarea id="describe_input" onBlur="describe_check()" name="detail"></textarea>
+                        </div>
+                        <div class="error-tip" id="describe_tip">请输入详情描述<span class="iconfont icon-cry"></span>
+                        </div>
+                    </div>
+                    <div class="picture">
+                        <span class="iconfont icon-ic_image_upload"></span>
+                        <label>
+                            图片
+                        </label>
+                        <div class="file_box">
+                            <div class="file_btn">上传图片
+                                <div class="box_file">
+                                    <input type="file" name="pclog" id="xdaTanFileImg" onchange="xmTanUploadImg(this)"
+                                           accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="picture_show">
+                            <img src="{{ url_for('static', filename='images/picture.png') }}" id="avarimgs">
+                        </div>
+                    </div>
+                    <div class="submit_box">
+                        <button class="btn btn-success" type="submit">我要发布</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

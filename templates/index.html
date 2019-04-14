@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}主页{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ url_for('index') }}">主页</a></li>
+        <li><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li><a href="{{ url_for('data') }}">约吧</a></li>
+        <li><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <!-- 广告轮播 -->
+    <div id="lunbo" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#lunbo" data-slide-to="0" class="active"></li>
+            <li data-target="#lunbo" data-slide-to="1"></li>
+            <li data-target="#lunbo" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="{{ url_for('static', filename='images/lunbo_carpool.png') }}" alt="1 slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>打车拼车</h1>
+
+                        <p>描述</p>
+
+                        <p><a class="btn btn-lg btn-primary" href="{{ url_for('carpool') }}"
+                              role="button">点击进入</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static', filename='images/lunbo_lostandfind.jpg') }}" alt="2 slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>失物招领</h1>
+                        <p>描述</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ url_for('loststandfind') }}"
+                              role="button">点击进入</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static', filename='images/lunbo_data.jpg') }}" alt="3 slide">
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>约吧</h1>
+
+                        <p>描述</p>
+
+                        <p><a class="btn btn-lg btn-primary" href="{{ url_for('data') }}"
+                              role="button">点击进入</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <a class="left carousel-control" href="#lunbo" data-slide="prev"><span
+                class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#lunbo" data-slide="next"><span
+                class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+
+
+    <!-- 主要内容 -->
+    <div class="container summary">
+
+        <!-- 简介 -->
+        <div class="row" id="summary-container">
+            <div class="col-md-4">
+                <img class="img-circle" src="{{ url_for('static', filename='images/carpool.png') }}" alt="carpoor">
+
+                <h2>打车拼车</h2>
+
+                <p>描述</p>
+
+                <p><a class="btn btn-default" href="{{ url_for('carpool') }}" role="button">点击进入</a></p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-circle" src="{{ url_for('static', filename='images/lostandfound.png') }}"
+                     alt="lostandfind">
+
+                <h2>失物招领</h2>
+
+                <p>描述</p>
+
+                <p><a class="btn btn-default" href="{{ url_for('loststandfind') }}" role="button">点击进入</a></p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-circle" src="{{ url_for('static', filename='images/data.png') }}" alt="data">
+
+                <h2>约吧</h2>
+
+                <p>描述</p>
+
+                <p><a class="btn btn-default" href="{{ url_for('data') }}" role="button">点击进入</a></p>
+            </div>
+        </div>
+        <!-- 特性 -->
+        <footer>
+            <p class="pull-right"><a href="#top">回到顶部</a></p>
+        </footer>
+    </div>
+{% endblock %}
+
+
+
+
+
+

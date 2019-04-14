@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}约吧{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/data.css') }}">
+{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">主页</a></li>
+        <li><a href="{{ url_for('carpool') }}">打车拼车</a></li>
+        <li class="active"><a href="{{ url_for('data') }}">约吧</a></li>
+        <li><a href="{{ url_for('loststandfind') }}">失物招领</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <div class="yetou">
+    </div>
+    <div class="yeshen">
+        <div class="row" id="yeshen">
+            <div class="col-md-9">
+                <div class="yeshen_left">
+                    <header class="head_list">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <div class="title_box">
+            					<span class="iconfont icon-zuzhihuodong" style="font-size:20px;">
+                                </span>
+                                    约吧
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <a href="{{ url_for('data_release') }}">
+                                    <button type="button" class="btn btn-success" id="release">发布活动<span
+                                            class="iconfont icon-zhaoji"></span></button>
+                                </a>
+                            </div>
+                            <form action="{{ url_for('data_search') }}" method="get">
+                                <div class="col-xs-6 col-md-4">
+                                    <input type="text" class="form-control" placeholder="Search" name="search">
+                                </div>
+                                <div class="col-xs-6 col-md-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </header>
+                    <div class="question_list">
+                        {% for q in questions %}
+                            <article class="question_wrapper top">
+                                <section class="box">
+                                    <div class="question_detail">
+                                        <header class="title">
+                                            <a href="{{ url_for('data_text', question_id=q.id) }}">
+                                                <h3>{{ q.title }}</h3>
+                                            </a>
+                                        </header>
+                                        <section class="wrap body">
+                                            <p>{{ q.detail }}</p>
+                                        </section>
+                                        <div class="ask_user">
+                                            <span class="author">{{ q.author.username }}</span>
+                                            发布于
+                                            <span class="time">{{ q.create_time }}</span>
+                                        </div>
+                                    </div>
+                                </section>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-lg">
+                        <li>
+                            <a href="{{ url_for('data') }}?page={{ prev_page }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% for num in num_list %}
+                            {% if num==curr_page %}
+                                <li class="active"><a href="{{ url_for('data') }}?page={{ num }}">{{ num }}</a></li>
+                            {% else %}
+                                <li class=""><a href="{{ url_for('data') }}?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li>
+                            <a href="{{ url_for('data') }}?page={{ next_page }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {% block sidebar %}
+                <div class="col-md-3">
+                    <div class="recommend_box">
+                        <div class="right_neirong 1">
+                            <div class="recommend_title">
+                                <a href=""><p class="bg-info">
+                                    历史今天
+                                </p></a>
+                            </div>
+                            <div class="recommend_content">
+                                <p class="bg-danger">
+                                    ##################################################
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right_neirong 2">
+                            <div class="recommend_title">
+                                <a href=""><p class="bg-info">
+                                    校园活动
+                                </p></a>
+                            </div>
+                            <div class="recommend_content">
+                                <p class="bg-warning">
+                                    ##################################################
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right_neirong 3">
+                            <div class="recommend_title">
+                                <a href=""><p class="bg-info">
+                                    校园趣事
+                                </p></a>
+                            </div>
+                            <div class="recommend_content">
+                                <p class="bg-success">
+                                    ##################################################
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right_neirong 4">
+                            <div class="recommend_title">
+                                <a href=""><p class="bg-info">
+                                    ######
+                                </p></a>
+                            </div>
+                            <div class="recommend_content">
+                                <p class="bg-warning">
+                                    ##################################################
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
