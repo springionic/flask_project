@@ -68,10 +68,9 @@ border-radius:20px;}
 		height:40px;}
 	.information.describe
 	{  border-bottom:2px solid #DADADA ;
-		height:150px;}
+		padding-bottom: 180px;}
 	.information.describe p
-	{
-		height:80px;}
+	{}
 	.information p
 	{	border-radius:15px;
 		text-indent:2em;

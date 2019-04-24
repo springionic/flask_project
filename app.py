@@ -516,4 +516,4 @@ admin.add_view(ModelView(LostAnswers, db.session, name=u'失物招领评论管�
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port='8000')
+    app.run(debug=True, host='10.30.171.13', port='8000')
