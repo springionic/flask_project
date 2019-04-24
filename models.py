@@ -135,6 +135,16 @@ class LostAnswers(db.Model):
 	author = db.relationship('Users')  # 获取评论的作者
 
 
+class RightPart(db.Model):
+	# 右侧部分
+	__tablename__ = 'right_part'
+	id = db.Column(db.Integer, autoincrement=True, primary_key=True)  # 序号
+	event = db.Column(db.String(64))
+	activity = db.Column(db.String(64))
+	interest = db.Column(db.String(64))
+
+
+
 
 
 

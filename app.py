@@ -16,6 +16,7 @@ from models import SearchQuestions
 from models import SearchAnswers
 from models import LostQuestions
 from models import LostAnswers
+from models import RightPart
 from sqlalchemy import or_
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -116,12 +117,15 @@ def carpool():
     num_list = questions.pages      # 显示总的分页数
     questions = questions.items     # 返回当前页面中所有记录
 
+    information = RightPart.query.all()[0]
+
     content = {
         'questions': questions,
         'num_list': range(1, num_list+1),
         'prev_page': prev_page,
         'next_page': next_page,
-        'curr_page': curr_page
+        'curr_page': curr_page,
+        'information': information
     }
 
     return render_template('carpool.html', **content)
