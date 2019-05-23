@@ -44,13 +44,13 @@
 }
 
 .box {
-    height: 150px;
+    border-bottom: 2px solid #EAEAEA;
+    height: 140px;
 }
 
 .question_detail {
     margin-bottom: 20px;
     padding-left: 30px;
-    border-bottom: 2px solid #EAEAEA;
 }
 
 .question_detail p {
@@ -65,36 +65,68 @@
 }
 
 .ask_user {
+    float: right;
     text-align: right;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     margin-right: 20px;
+    width: 100%;
+}
+
+.ask_user .iconfont {
+
+    background-color: white;
+    padding-bottom: 4px;
+    border: 0px solid #EAEAEA;
+}
+
+.recommend_data .iconfont {
+
+    background-color: white;
+    border: 0px solid #EAEAEA;
+}
+
+.badge {
+    /*margin-left: 4px;*/
+    font-size: 10px;
+    margin-top: 0px;
+}
+
+.author {
+    margin-left: 63%;
 }
 
 .recommend_box {
     width: 350px;
-    padding-top: 60px;
+    padding-top: 30px;
     background-color: white;
-    height: 600px;
+    height: 580px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 .right_neirong {
     width: 100%;
-    height: 18%;
+    height: 26%;
     margin-bottom: 30px;
     background-color: white;
     padding-top: 15px;
-    border-top: 2px solid #EAEAEA;
+    /*border: 2px solid #EAEAEA;*/
 }
 
 .recommend_title {
 }
 
+.box_title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
 .recommend_title p {
     font-size: 20px;
     width: 100%;
-    text-indent: 2em;
+
     border-radius: 10px;
 }
 
@@ -103,13 +135,18 @@
 
 .recommend_content p {
     width: 100%;
-    height: 50px;
-    text-indent: 1em;
+    height: 30px;
+
     font-size: 18px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
 
+.recommend_data {
+    width: 100%;
+    height: 30px;
+    /*padding-left: 6%;*/
 }
 
 /* CSS Document */
@@ -117,7 +154,6 @@ body {
     padding-top: 50px;
     padding-bottom: 40px;
     min-width: 1500px;
-    background-color: #FFF;
 }
 
 .register {
@@ -139,6 +175,7 @@ body {
         padding-left: 30px;
         padding-right: 30px;
         background-color: #FFF;
+
     }
 
     .recommend_box {
@@ -147,10 +184,95 @@ body {
         padding-left: 15%;
         padding-right: 15%;
         background-color: #FFF;
-        height: 800px;
+        height: 850px;
         margin-left: 250px;
     }
 
 }
+@media screen and (max-width: 360px) {
+        .yeshen_right
+        .col-md-3 {
+            display: none;
+        }
 
+        .yeshen {
+            padding: 0px 0px 0px 0px;
+            width: 100%;
+        }
 
+        #yeshen {
+            width: 100%;
+        }
+
+        .recommend_box {
+            display: none;
+        }
+
+        .col-md-9 {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        .row {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .yeshen_left {
+            height: 100%;
+            width: 100%;
+            background-color: #FFF;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        body {
+            padding-bottom: 0px;
+            min-width: auto;
+        }
+
+        .question_detail {
+            margin-bottom: 20px;
+            padding-left: 5%;
+        }
+
+        .col-md-4 {
+            margin-top: 1%;
+        }
+
+        .col-md-2 {
+            margin-top: 1%;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .yetou {
+            height: 20px;
+            background-image: url(../images/yetou.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .question_detail p {
+            width: 95%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .pagination{
+            margin-top: 0px;
+
+            height: 90%;
+        }
+        .col-md-9 nav{
+
+        }
+
+    }
+hr{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}

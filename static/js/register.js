@@ -21,6 +21,7 @@ function createCode() {
     document.getElementById("discode").style.letterSpacing = "10px"; //字体间距
     document.getElementById("discode").style.color = "#ff0000"; //字体颜色
     document.getElementById("discode").innerHTML = code; // 显示
+    document.getElementById("page_code").value = code;
 }
 
 function Codechange() {
@@ -32,6 +33,7 @@ function Codechange() {
         code += selectChar[charIndex];
     }
     document.getElementById("discode").innerHTML = code;
+    document.getElementById("page_code").value = code;
 }
 
 function studentid_panduan() {

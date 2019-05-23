@@ -4,6 +4,8 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/lostandfind.css') }}">
+    <link rel="stylesheet" href="../static/css/style.css">
+
 {% endblock %}
 
 {% block navbar %}
@@ -55,8 +57,10 @@
                     <div class="question_list">
                         <hr class="feature-divider">
                         <ul class="nav nav-tabs" role="tablist" id="feature-tab">
-                            <li class="{% if act==0 %}active{% endif %}" id="tab1"><a href="#find" role="tab" data-toggle="tab">失物招领</a></li>
-                            <li class="{% if act==1 %}active{% endif %}" id="tab2"><a href="#lost" role="tab" data-toggle="tab">寻物启事</a></li>
+                            <li class="{% if act==0 %}active{% endif %}" id="tab1"><a href="#find" role="tab"
+                                                                                      data-toggle="tab">失物招领</a></li>
+                            <li class="{% if act==1 %}active{% endif %}" id="tab2"><a href="#lost" role="tab"
+                                                                                      data-toggle="tab">寻物启事</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane {% if act==0 %}active{% endif %}" id="find">
@@ -86,33 +90,64 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination pagination-lg">
-                                        <li>
-                                            <a href="{{ url_for('loststandfind') }}?page_a={{ a_prev_page }}&activate=0"
-                                               aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        {% for num in a_num_list %}
-                                            {% if num==a_curr_page %}
-                                                <li class="active"><a
-                                                        href="{{ url_for('loststandfind') }}?page_a={{ num }}&activate=0">{{ num }}</a>
-                                                </li>
-                                            {% else %}
-                                                <li class=""><a
-                                                        href="{{ url_for('loststandfind') }}?page_a={{ num }}&activate=0">{{ num }}</a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                        <li>
-                                            <a href="{{ url_for('loststandfind') }}?page_a={{ a_next_page }}&activate=0"
-                                               aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+{#                              {% 处理分页的复杂操作 %}#}
+                                {% if s==1 %}
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination pagination-lg">
+                                            <li>
+                                                <a href="{{ url_for('lost_find_search') }}?search={{ search }}&page_a={{ a_prev_page }}&activate=0"
+                                                   aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            {% for num in a_num_list %}
+                                                {% if num==a_curr_page %}
+                                                    <li class="active"><a
+                                                            href="{{ url_for('lost_find_search') }}?search={{ search }}&page_a={{ num }}&activate=0">{{ num }}</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class=""><a
+                                                            href="{{ url_for('lost_find_search') }}?search={{ search }}&page_a={{ num }}&activate=0">{{ num }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <li>
+                                                <a href="{{ url_for('lost_find_search') }}?search={{ search }}&page_a={{ a_next_page }}&activate=0"
+                                                   aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                {% else %}
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination pagination-lg">
+                                            <li>
+                                                <a href="{{ url_for('loststandfind') }}?page_a={{ a_prev_page }}&activate=0"
+                                                   aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            {% for num in a_num_list %}
+                                                {% if num==a_curr_page %}
+                                                    <li class="active"><a
+                                                            href="{{ url_for('loststandfind') }}?page_a={{ num }}&activate=0">{{ num }}</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class=""><a
+                                                            href="{{ url_for('loststandfind') }}?page_a={{ num }}&activate=0">{{ num }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <li>
+                                                <a href="{{ url_for('loststandfind') }}?page_a={{ a_next_page }}&activate=0"
+                                                   aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                {% endif %}
                             </div>
                             <div class="tab-pane {% if act==1 %}active{% endif %}" id="lost">
                                 <div class="row feature">
@@ -176,52 +211,65 @@
             {% block sidebar %}
                 <div class="col-md-3">
                     <div class="recommend_box">
+                        <div class="box_title">
+                            近期最热
+                        </div>
                         <div class="right_neirong 1">
                             <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    历史今天
+                                <a href="{{ url_for('find_text', question_id=max_counter_question_a.id) }}"><p>
+                                    {{ max_counter_question_a.title }}
                                 </p></a>
                             </div>
                             <div class="recommend_content">
-                                <p class="bg-danger">
-                                    ##################################################
+                                <p>
+                                    {{ max_counter_question_a.detail }}
                                 </p>
+                                <img src="{{ url_for('static', filename='pictures/'+max_counter_question_a.picture) }}"
+                                     alt="...">
+                                <div class="data_box">
+                                    {#                                    <label for="" style="">热度:</label>#}
+                                    <button class="iconfont icon-chakan" disabled type="button"><span
+                                            class="badge">{{ max_counter_question_a.counter }}</span>
+                                    </button>
+                                    {#                                    <label for="" style="margin-left: 65px;">评论:</label>#}
+                                    <button class="iconfont icon-pinglun" disabled type="button"><span
+                                            class="badge">{{ max_counter_question_a.lost_answers | length }}</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="right_neirong 2">
                             <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    校园活动
+                                <a href="{{ url_for('lost_text', question_id=max_counter_question_b.id) }}"><p>
+                                    {{ max_counter_question_b.title }}
                                 </p></a>
                             </div>
                             <div class="recommend_content">
-                                <p class="bg-warning">
-                                    ##################################################
+                                <p>
+                                    {{ max_counter_question_b.detail }}
                                 </p>
+                                <img src="{{ url_for('static', filename='pictures/'+max_counter_question_b.picture) }}"
+                                     alt="...">
+                                <div class="data_box">
+                                    {#                                    <label for="" style="">热度:</label>#}
+                                    <button class="iconfont icon-chakan" disabled type="button"><span
+                                            class="badge">{{ max_counter_question_b.counter }}</span>
+                                    </button>
+                                    {#                                    <label for="" style="margin-left: 65px;">评论:</label>#}
+                                    <button class="iconfont icon-pinglun" disabled type="button"><span
+                                            class="badge">{{ max_counter_question_b.search_answers | length }}</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="right_neirong 3">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    校园趣事
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-success">
-                                    ##################################################
-                                </p>
-                            </div>
-                        </div>
-                        <div class="right_neirong 4">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    ######
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-warning">
-                                    ##################################################
-                                </p>
+                        <div id="div">
+                            <div class="monster">
+                                <span class="ear left"></span>
+                                <span class="ear right"></span>
+                                <span class="eye"></span>
+                                <span class="mouth">
+            <span class="tooth"></span>
+            </span>
                             </div>
                         </div>
                     </div>
@@ -230,6 +278,7 @@
         </div>
     </div>
 {% endblock %}
+
 {#<script>#}
 {#    $(document).ready(function () {#}
 {#        $("#tab1").click(function () {#}

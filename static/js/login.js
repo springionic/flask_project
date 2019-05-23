@@ -27,7 +27,7 @@ function Codechange()
 		code +=selectChar[charIndex];
 	}	
 	document.getElementById("discode").innerHTML=code;
-	document.getElementById("page_code").value(code);
+	document.getElementById("page_code").value = code;
 	}
 function yanzhengma_panduan()
 	{

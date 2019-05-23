@@ -72,78 +72,81 @@
                     </div>
                 </div>
                 <nav aria-label="Page navigation">
-                    <ul class="pagination pagination-lg">
-                        <li>
-                            <a href="{{ url_for('data') }}?page={{ prev_page }}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        {% for num in num_list %}
-                            {% if num==curr_page %}
-                                <li class="active"><a href="{{ url_for('data') }}?page={{ num }}">{{ num }}</a></li>
-                            {% else %}
-                                <li class=""><a href="{{ url_for('data') }}?page={{ num }}">{{ num }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        <li>
-                            <a href="{{ url_for('data') }}?page={{ next_page }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+                    {% if s==1 %}
+                        <ul class="pagination pagination-lg">
+                            <li>
+                                <a href="{{ url_for('data_search') }}?search={{ search }}&page={{ prev_page }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {% for num in num_list %}
+                                {% if num==curr_page %}
+                                    <li class="active"><a href="{{ url_for('data_search') }}?search={{ search }}&page={{ num }}">{{ num }}</a></li>
+                                {% else %}
+                                    <li class=""><a href="{{ url_for('data_search') }}?search={{ search }}&page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li>
+                                <a href="{{ url_for('data_search') }}?search={{ search }}&page={{ next_page }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <ul class="pagination pagination-lg">
+                            <li>
+                                <a href="{{ url_for('data') }}?page={{ prev_page }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {% for num in num_list %}
+                                {% if num==curr_page %}
+                                    <li class="active"><a href="{{ url_for('data') }}?page={{ num }}">{{ num }}</a></li>
+                                {% else %}
+                                    <li class=""><a href="{{ url_for('data') }}?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li>
+                                <a href="{{ url_for('data') }}?page={{ next_page }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+
                 </nav>
             </div>
             {% block sidebar %}
                 <div class="col-md-3">
                     <div class="recommend_box">
-                        <div class="right_neirong 1">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    历史今天
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-danger">
-                                    ##################################################
-                                </p>
-                            </div>
+                        <div class="box_title">
+                            近期最热
                         </div>
-                        <div class="right_neirong 2">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    校园活动
-                                </p></a>
+                        {% for question in max_counter_questions %}
+                            <div class="right_neirong 1">
+                                <div class="recommend_title">
+                                    <a href="{{ url_for('data_text', question_id=question.id) }}"><p>
+                                        {{ question.title }}
+                                    </p></a>
+                                </div>
+                                <div class="recommend_content">
+                                    <p>
+                                        {{ question.detail }}
+                                    </p>
+                                </div>
+                                <div class="recommend_data">
+                                    <label for="" style="">热度:</label>
+                                    <button class="iconfont icon-chakan" disabled type="button"><span
+                                            class="badge">{{ question.counter }}</span>
+                                    </button>
+                                    <label for="" style="margin-left: 65px;">评论:</label>
+                                    <button class="iconfont icon-pinglun" disabled type="button"><span
+                                            class="badge">{{ question.play_answers | length }}</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="recommend_content">
-                                <p class="bg-warning">
-                                    ##################################################
-                                </p>
-                            </div>
-                        </div>
-                        <div class="right_neirong 3">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    校园趣事
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-success">
-                                    ##################################################
-                                </p>
-                            </div>
-                        </div>
-                        <div class="right_neirong 4">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    ######
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-warning">
-                                    ##################################################
-                                </p>
-                            </div>
-                        </div>
+                            <hr>
+                        {% endfor %}
                     </div>
                 </div>
             {% endblock %}

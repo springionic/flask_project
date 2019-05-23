@@ -84,6 +84,11 @@
             </div>
         </div>
     </form>
+    <h2 style="color: red">
+        {% for msg in get_flashed_messages() %}
+            {{ msg }}
+        {% endfor %}
+    </h2>
 </div>
 </body>
 </html>

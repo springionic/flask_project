@@ -59,7 +59,9 @@
                                             </a>
                                         </header>
                                         <section class="wrap body">
-                                            <p>{{ q.detail }}</p>
+                                            <p><label for="">出发时间:</label>{{ q.time }}
+                                                <label for="" style="margin-left: 40px;">目的地:</label>{{ q.destination }}
+                                            </p>
                                         </section>
                                         <div class="ask_user">
                                             <span class="author">{{ q.author.username }}</span>
@@ -75,21 +77,49 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination pagination-lg">
                         <li>
-                            <a href="{{ url_for('carpool') }}?page={{ prev_page }}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+                            {% if s==1 %}
+                                <a href="{{ url_for('carpool_search') }}?search={{ search }}&page={{ prev_page }}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('carpool') }}?search={{ search }}&page={{ prev_page }}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {% endif %}
+
                         </li>
-                            {% for num in num_list %}
+                        {% for num in num_list %}
+                            {% if s==1 %}
                                 {% if num==curr_page %}
-                                    <li class="active"><a href="{{ url_for('carpool') }}?page={{ num }}">{{ num }}</a></li>
+                                    <li class="active"><a
+                                            href="{{ url_for('carpool_search') }}?search={{ search }}&page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class=""><a
+                                            href="{{ url_for('carpool_search') }}?search={{ search }}&page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                {% if num==curr_page %}
+                                    <li class="active"><a href="{{ url_for('carpool') }}?page={{ num }}">{{ num }}</a>
+                                    </li>
                                 {% else %}
                                     <li class=""><a href="{{ url_for('carpool') }}?page={{ num }}">{{ num }}</a></li>
                                 {% endif %}
-                            {% endfor %}
+                            {% endif %}
+                        {% endfor %}
                         <li>
-                            <a href="{{ url_for('carpool') }}?page={{ next_page }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                            {% if s==1 %}
+                                <a href="{{ url_for('carpool_search') }}?search={{ search }}&page={{ next_page }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('carpool') }}?page={{ next_page }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {% endif %}
                         </li>
                     </ul>
                 </nav>
@@ -97,54 +127,34 @@
             {% block sidebar %}
                 <div class="col-md-3">
                     <div class="recommend_box">
-                        <div class="right_neirong 1">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    最近事件
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-danger">
-                                    {{ information.event }}
-                                </p>
-                            </div>
+                        <div class="box_title">
+                            近期最热
                         </div>
-                        <div class="right_neirong 2">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    校园活动
-                                </p></a>
+                        {% for question in max_counter_questions %}
+                            <div class="right_neirong 1">
+                                <div class="recommend_title">
+                                    <a href="{{ url_for('carpool_text', question_id=question.id) }}"><p>
+                                        {{ question.title }}
+                                    </p></a>
+                                </div>
+                                <div class="recommend_content">
+                                    <p>
+                                        {{ question.detail }}
+                                    </p>
+                                </div>
+                                <div class="recommend_data">
+                                    <label for="" style="">热度:</label>
+                                    <button class="iconfont icon-chakan" disabled type="button"><span
+                                            class="badge">{{ question.counter }}</span>
+                                    </button>
+                                    <label for="" style="margin-left: 65px;">评论:</label>
+                                    <button class="iconfont icon-pinglun" disabled type="button"><span
+                                            class="badge">{{ question.carpool_answers | length }}</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="recommend_content">
-                                <p class="bg-warning">
-                                    {{ information.activity }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="right_neirong 3">
-                            <div class="recommend_title">
-                                <a href=""><p class="bg-info">
-                                    校园趣事
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-success">
-                                    {{ information.interest }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="right_neirong 4">
-                            <div class="recommend_title">
-                                <a href="https://www.bjtuhbxy.edu.cn/"><p class="bg-info">
-                                    海滨学院官网
-                                </p></a>
-                            </div>
-                            <div class="recommend_content">
-                                <p class="bg-warning">
-
-                                </p>
-                            </div>
-                        </div>
+                            <hr>
+                        {% endfor %}
                     </div>
                 </div>
             {% endblock %}

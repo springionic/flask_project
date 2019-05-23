@@ -4,6 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_information.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-1.11.1.js') }}"></script>
     <script src="{{ url_for('static', filename='js/personal_information.js') }}"></script>
 {% endblock %}
 
@@ -38,13 +39,16 @@
                                 <div class="studentid">
                                     <div class="information studentid">
                                         <span class="iconfont icon-wxbzhanghu">学号:</span>
-                                        <p class="bg-info">
+                                        <p class="bg-info" id="user_id">
                                             {{ user.s_id }}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="botton_box">
+                                <button type="button" class="btn btn-primary" onclick="rename()"
+                                        style="margin-right: 300px;">修改用户昵称
+                                </button>
                                 <button type="submit" class="btn btn-primary" onClick="turn()">查看发布记录</button>
                             </div>
                         </div>
@@ -64,6 +68,7 @@
                                                     </a>
                                                 </header>
                                                 <p>{{ q.detail }}</p>
+                                                <button class="btn btn-danger" onclick="del_carpool({{ q.id }})">删除记录</button>
                                                 <span class="time">{{ q.create_time }}</span>
                                             </div>
                                         </section>
@@ -80,6 +85,7 @@
                                                     </a>
                                                 </header>
                                                 <p>{{ q.detail }}</p>
+                                                <button class="btn btn-danger" onclick="del_play({{ q.id }})">删除记录</button>
                                                 <span class="time">{{ q.create_time }}</span>
                                             </div>
                                         </section>
@@ -96,6 +102,7 @@
                                                     </a>
                                                 </header>
                                                 <p>{{ q.detail }}</p>
+                                                <button class="btn btn-danger" onclick="del_search({{ q.id }})">删除记录</button>
                                                 <span class="time">{{ q.create_time }}</span>
                                             </div>
                                         </section>
@@ -112,6 +119,7 @@
                                                     </a>
                                                 </header>
                                                 <p>{{ q.detail }}</p>
+                                                <button class="btn btn-danger" onclick="del_lost({{ q.id }})">删除记录</button>
                                                 <span class="time">{{ q.create_time }}</span>
                                             </div>
                                         </section>
